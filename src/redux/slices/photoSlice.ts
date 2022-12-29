@@ -13,9 +13,9 @@ const initialState: IPhotoDataState = {
 
 export const getPhoto = createAsyncThunk(
   "photo/getPhoto",
-  async (_, { rejectWithValue }) => {
+  async (data: number | undefined, { rejectWithValue }) => {
     try {
-      const response = await getPhotos();
+      const response = await getPhotos(data);
 
       return response;
     } catch (error) {
@@ -26,10 +26,21 @@ export const getPhoto = createAsyncThunk(
   }
 );
 
-const postsSlice = createSlice({
+const photoSlice = createSlice({
   name: "photo",
   initialState,
-  reducers: {},
+  reducers: {
+    likeToggle: (state, { payload }) => {
+      const index = state.photos.findIndex((el) => el.id === payload);
+
+      state.photos[index].liked = !state.photos[index].liked;
+    },
+    deletePhoto: (state, { payload }) => {
+      const index = state.photos.findIndex((el) => el.id === payload);
+
+      state.photos.splice(index, 1);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getPhoto.pending, (state) => {
@@ -48,4 +59,6 @@ const postsSlice = createSlice({
   },
 });
 
-export default postsSlice.reducer;
+export const { likeToggle, deletePhoto } = photoSlice.actions;
+
+export default photoSlice.reducer;
