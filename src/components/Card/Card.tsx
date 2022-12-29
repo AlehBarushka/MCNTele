@@ -21,7 +21,6 @@ const Card = React.memo(({ uri, description, isLiked, id }: ICardProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.desc}>{description}</Text>
-
       <Image source={{ uri }} style={styles.image} />
       <View style={styles.btnContainer}>
         <View style={styles.btn}>
