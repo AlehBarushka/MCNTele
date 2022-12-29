@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import postsSlice from "./slices/postsSlice";
+import photoSlice from "./slices/photoSlice";
 
 const rootReducer = combineReducers({
-  posts: postsSlice,
+  photo: photoSlice,
 });
 
 export default rootReducer;
