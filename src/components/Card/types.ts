@@ -3,4 +3,5 @@ export interface ICardProps {
   uri: string;
   description: string;
   isLiked: boolean;
+  resetSorting: () => void;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   FlatList,
   ListRenderItem,
@@ -32,12 +32,17 @@ const HomeScreen = () => {
     const filteredArr = photosCopy.sort(
       (a, b) => Number(b.liked) - Number(a.liked)
     );
+
     setFiltered(filteredArr);
   }, [isSorted, photos.length]);
 
   const handleChange = () => {
     setIsSorted(!isSorted);
   };
+
+  const resetSorting = useCallback(() => {
+    setIsSorted(false);
+  }, []);
 
   const handleOnEndReached = () => {
     if (page !== undefined) {
@@ -50,6 +55,7 @@ const HomeScreen = () => {
   const renderItem: ListRenderItem<IPhoto> = ({ item }) => {
     return (
       <Card
+        resetSorting={resetSorting}
         id={item.id}
         uri={item.src.tiny}
         description={item.alt}

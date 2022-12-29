@@ -4,6 +4,7 @@ import { Colors } from "../../constants/colors";
 const styles = StyleSheet.create({
   container: {
     margin: 12,
+    paddingHorizontal: 16,
     backgroundColor: Colors.white,
     borderRadius: 10,
     flexDirection: "column",
