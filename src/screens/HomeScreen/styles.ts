@@ -5,6 +5,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 8,
   },
+  filterContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 });
 
 export default styles;
