@@ -7,8 +7,6 @@ type Photo = {
 };
 
 export interface IGetPhotosResponse {
-  next_page: string;
   page: number;
-  total_results: number;
   photos: Photo[];
 }

@@ -8,7 +8,7 @@ export type IPhoto = {
 
 export interface IPhotoDataState {
   isLoading: boolean;
+  page: number | undefined;
   photos: IPhoto[];
-  total: number | null;
   error: unknown | null;
 }

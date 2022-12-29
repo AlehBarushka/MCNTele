@@ -7,7 +7,7 @@ import { getPhotos } from "../../api/rest/getPhotos";
 const initialState: IPhotoDataState = {
   photos: [],
   isLoading: false,
-  total: null,
+  page: undefined,
   error: null,
 };
 
@@ -48,7 +48,7 @@ const photoSlice = createSlice({
       })
       .addCase(getPhoto.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.total = payload.total_results;
+        state.page = payload.page;
         state.photos = [...state.photos, ...payload.photos];
         state.error = null;
       })
