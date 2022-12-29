@@ -1,11 +1,8 @@
 import { makeGetRequest } from "../makeRequest";
-import { IGetPhotosRequest, IGetPhotosResponse } from "./types";
+import { IGetPhotosResponse } from "./types";
 
-export const getPhotos = async ({
-  page = 1,
-  perPage = 15,
-}: IGetPhotosRequest) => {
-  const query = `?query=landscape&locale=ru-RU&page=${page}&per_page=${perPage}`;
+export const getPhotos = async (page: number = 1) => {
+  const query = `?query=landscape&locale=ru-RU&page=${page}}`;
 
   return makeGetRequest<IGetPhotosResponse>(query);
 };

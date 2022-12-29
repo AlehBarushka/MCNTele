@@ -1,7 +1,7 @@
 import { apiConfig } from "./config";
 
 export const makeGetRequest = <TResponse>(
-  query: string,
+  query?: string,
   config: RequestInit = {}
 ): Promise<TResponse> => {
   config.headers = { Authorization: apiConfig.apiKey };
@@ -10,11 +10,15 @@ export const makeGetRequest = <TResponse>(
 
   return fetch(url, config)
     .then((response) => {
-      if (!response.ok) {
-        return Promise.reject(response);
+      if (response.ok) {
+        return response.json();
       }
 
-      return response.json();
+      if (!response.ok && response.status === 401) {
+        throw new Error("Не авторизован");
+      }
+
+      throw new Error("Непредвиденная ошибка");
     })
     .then((data) => data as TResponse);
 };

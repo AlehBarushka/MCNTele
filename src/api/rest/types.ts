@@ -1,13 +1,9 @@
-export interface IGetPhotosRequest {
-  page?: number;
-  perPage?: number;
-}
-
 type Photo = {
   id: number;
   alt: string;
   photographer: string;
-  src: { small: string };
+  liked: boolean;
+  src: { tiny: string };
 };
 
 export interface IGetPhotosResponse {
